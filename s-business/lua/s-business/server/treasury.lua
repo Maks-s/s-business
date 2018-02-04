@@ -42,8 +42,6 @@ SA.Business:AddEvent( "WithdrawTreasury", function( pPlayer, tblInfos )
 	net.Send( pPlayer )		
 end)
 
-PrintTable( SA.Business.List[ "Slown Corp" ])
-
 SA.Business:AddEvent( "DepositTreasury", function( pPlayer, tblInfos )
 	if not tblInfos[ 'Business' ] then return end
 	if not tblInfos[ 'Amount' ] then return end
