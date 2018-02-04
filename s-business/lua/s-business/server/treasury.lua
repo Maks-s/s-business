@@ -1,16 +1,16 @@
 SA.Business:AddEvent( "WithdrawTreasury", function( pPlayer, tblInfos )
-	if not tblInfos[ 'Business' ] then return end
-	if not tblInfos[ 'Amount' ] then return end
+	if !tblInfos[ 'Business' ] then return end
+	if !tblInfos[ 'Amount' ] then return end
 
-	if not SA.Business.List[ tblInfos[ 'Business' ] ] then return end
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'Treasury' ] then return end
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'Treasury' ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then return end
 
 	if SA.Business.List[ tblInfos[ 'Business' ] ][ 'TreasuryIsEnable' ] == "false" then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "FundsDisable" ), SA.Business.Red, 5 )
 	end
 
-	if not SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Treasury" ) then
+	if !SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Treasury" ) then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "NoPermission" ), SA.Business.Red, 5 )
 	end
 
@@ -43,19 +43,19 @@ SA.Business:AddEvent( "WithdrawTreasury", function( pPlayer, tblInfos )
 end)
 
 SA.Business:AddEvent( "DepositTreasury", function( pPlayer, tblInfos )
-	if not tblInfos[ 'Business' ] then return end
-	if not tblInfos[ 'Amount' ] then return end
+	if !tblInfos[ 'Business' ] then return end
+	if !tblInfos[ 'Amount' ] then return end
 
-	if not SA.Business.List[ tblInfos[ 'Business' ] ] then return end
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'Treasury' ] then return end
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then return end
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'TreasuryIsEnable' ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'Treasury' ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'TreasuryIsEnable' ] then return end
 
 	if SA.Business.List[ tblInfos[ 'Business' ] ][ 'TreasuryIsEnable' ] == "false" then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "FundsDisable" ), SA.Business.Red, 5 )
 	end
 
-	if not SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Treasury" ) then
+	if !SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Treasury" ) then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "NoPermission" ), SA.Business.Red, 5 )
 	end
 
@@ -84,13 +84,13 @@ SA.Business:AddEvent( "DepositTreasury", function( pPlayer, tblInfos )
 end)
 
 SA.Business:AddEvent( "DisableEnableFunds", function( pPlayer, tblInfos )
-	if not tblInfos[ 'Business' ] then return end
-	if not tblInfos[ 'Disable' ] then return end
+	if !tblInfos[ 'Business' ] then return end
+	if !tblInfos[ 'Disable' ] then return end
 
-	if not SA.Business.List[ tblInfos[ 'Business' ] ] then return end
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'TreasuryIsEnable' ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'TreasuryIsEnable' ] then return end
 
-	if not SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Disable / Enable Funds" ) then
+	if !SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Disable / Enable Funds" ) then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "NoPermission" ), SA.Business.Red, 5 )
 	end
 

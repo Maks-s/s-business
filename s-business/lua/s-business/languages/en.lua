@@ -23,6 +23,7 @@ SA.Business.Languages[ 'en' ] = {
 	[ 'SellerDeleted' ] = "Seller successfully deleted",
 	[ 'SellerChanged' ] = "Seller successfully changed",
 	[ 'InvalidSeller' ] = "Invalid Seller",
+	[ 'InvalidModel' ] = "Invalid model",
 
 	[ 'MyBusiness' ] = "My Business",
 	[ 'Manage' ] = "Manage",

@@ -52,7 +52,7 @@ net.Receive( "S:Business:OpenMenuCrate", function()
     end
 
 	for k,v in pairs( tblContents ) do
-		if not SA.Business.SellersContents[ k ] then continue end
+		if !SA.Business.SellersContents[ k ] then continue end
 
 	 	local Bg = vgui.Create( "DPanel", ContentsList )
 	 	Bg:SetSize( 0, 64 )

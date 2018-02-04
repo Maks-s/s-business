@@ -1,8 +1,8 @@
 function SA.Business:AddContentToSeller( strBusiness, strSeller )
 	if ValidPanel( SA.Business.BaseAddContentToSeller ) then SA.Business.BaseAddContentToSeller:Remove() end
-	if not SA.Business.List[ strBusiness ] then return end
-	if not SA.Business.List[ strBusiness ][ 'Sellers' ] then return end
-	if not SA.Business.List[ strBusiness ][ 'Sellers' ][ strSeller ] then return end
+	if !SA.Business.List[ strBusiness ] then return end
+	if !SA.Business.List[ strBusiness ][ 'Sellers' ] then return end
+	if !SA.Business.List[ strBusiness ][ 'Sellers' ][ strSeller ] then return end
 	
 	local Index = ""
 
@@ -61,7 +61,7 @@ function SA.Business:AddContentToSeller( strBusiness, strSeller )
 			draw.RoundedBox( 0, 0, 0, self.Lerp, h, Color( 255, 255, 255, 10 ) )
 		end
 
-		if SA.Business.SellersContents[ Index ] && ContentAmount:GetValue() != nil && ContentAmount:GetValue() != "" && tonumber( ContentAmount:GetValue() ) && ContentAmount:GetValue() != "Montant..." && tonumber( ContentAmount:GetValue() ) > 0 then
+		if SA.Business.SellersContents[ Index ] && ContentAmount:GetValue() ~= nil && ContentAmount:GetValue() ~= "" && tonumber( ContentAmount:GetValue() ) && ContentAmount:GetValue() ~= "Montant..." && tonumber( ContentAmount:GetValue() ) > 0 then
 			draw.SimpleText( SA.Business:GetLanguage( "Add" ) .. " ( " .. DarkRP.formatMoney( SA.Business.SellersContents[ Index ][ 'Price' ] * tonumber( ContentAmount:GetValue() ) ) .. " )", "S:Business:Roboto:18", w / 2, h / 2, color_white, 1, 1 )
 		else
 			draw.SimpleText( SA.Business:GetLanguage( "Add" ) .. " ( " .. DarkRP.formatMoney( 0 ) .. " )", "S:Business:Roboto:18", w / 2, h / 2, color_white, 1, 1 )
@@ -89,9 +89,9 @@ end
 
 function SA.Business:EditSeller( strBusiness, strSeller )
 	if ValidPanel( SA.Business.BaseEditSeller ) then SA.Business.BaseEditSeller:Remove() end
-	if not SA.Business.List[ strBusiness ] then return end
-	if not SA.Business.List[ strBusiness ][ 'Sellers' ] then return end
-	if not SA.Business.List[ strBusiness ][ 'Sellers' ][ strSeller ] then return end
+	if !SA.Business.List[ strBusiness ] then return end
+	if !SA.Business.List[ strBusiness ][ 'Sellers' ] then return end
+	if !SA.Business.List[ strBusiness ][ 'Sellers' ][ strSeller ] then return end
 	
 	SA.Business.BaseEditSeller = vgui.Create( "DFrame" )
 	SA.Business.BaseEditSeller:SetSize( 500, 95 )
@@ -114,7 +114,10 @@ function SA.Business:EditSeller( strBusiness, strSeller )
 	Edit:SetPos( 5, 60 )
 	Edit:SetText( SA.Business:GetLanguage( "Edit" ) )
 	Edit.DoClick = function()
-		if SellerModel:GetValue() == "" then return end
+		if !util.IsValidModel( SellerModel:GetValue() ) then
+			SA.Business:AddNotify( SA.Business:GetLanguage( "InvalidModel" ), SA.Business.Red, 3 )
+			return
+		end
 
 		net.Start( "S:Business:Events" )
 		net.WriteString( "EditSeller" )
@@ -130,9 +133,9 @@ function SA.Business:EditSeller( strBusiness, strSeller )
 end
 
 function SA.Business:ManageSellers( strBusiness )
-	if not ValidPanel( SA.Business.Bg ) then return end
-	if not SA.Business.List[ strBusiness ] then return end
-	if not SA.Business.List[ strBusiness ][ 'Sellers' ] then SA.Business.List[ strBusiness ][ 'Sellers' ] = {} end
+	if !ValidPanel( SA.Business.Bg ) then return end
+	if !SA.Business.List[ strBusiness ] then return end
+	if !SA.Business.List[ strBusiness ][ 'Sellers' ] then SA.Business.List[ strBusiness ][ 'Sellers' ] = {} end
 
 
 	SA.Business.SellersList = vgui.Create( "DScrollPanel", SA.Business.Bg )

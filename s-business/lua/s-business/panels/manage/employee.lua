@@ -1,8 +1,8 @@
 function SA.Business:EditEmployee( strBusiness, strEmployee )
 	if ValidPanel( SA.Business.BaseEditEmployee ) then SA.Business.BaseEditEmployee:Remove() end
-	if not SA.Business.List[ strBusiness ] then return end
-	if not SA.Business.List[ strBusiness ][ 'Employees' ] then return end
-	if not SA.Business.List[ strBusiness ][ 'Employees' ][ strEmployee ] then return end
+	if !SA.Business.List[ strBusiness ] then return end
+	if !SA.Business.List[ strBusiness ][ 'Employees' ] then return end
+	if !SA.Business.List[ strBusiness ][ 'Employees' ][ strEmployee ] then return end
 	
 	SA.Business.BaseEditEmployee = vgui.Create( "DFrame" )
 	SA.Business.BaseEditEmployee:SetSize( 500, 130 )
@@ -36,7 +36,7 @@ function SA.Business:EditEmployee( strBusiness, strEmployee )
 	Edit.DoClick = function()
 		if ESalary:GetValue() == "" then return end
 		
-		if not SA.Business.Perms then SA.Business.Perms = {} end
+		if !SA.Business.Perms then SA.Business.Perms = {} end
 
 		net.Start( "S:Business:Events" )
 		net.WriteString( "EditEmployee" )
@@ -54,10 +54,10 @@ end
 
 function SA.Business:EmployeePermissions( strBusiness, strEmployee )
 	if ValidPanel( SA.Business.BaseEmployeePerms ) then SA.Business.BaseEmployeePerms:Remove() end
-	if not strEmployee then return end
-	if not SA.Business.List[ strBusiness ] then return end
-	if not SA.Business.List[ strBusiness ][ 'Employees' ] then return end
-	if not SA.Business.DefaultPerms then return end
+	if !strEmployee then return end
+	if !SA.Business.List[ strBusiness ] then return end
+	if !SA.Business.List[ strBusiness ][ 'Employees' ] then return end
+	if !SA.Business.DefaultPerms then return end
 	
 	local Perms = {}
 
@@ -130,9 +130,9 @@ function SA.Business:EmployeePermissions( strBusiness, strEmployee )
 end
 
 function SA.Business:ManageEmployees( strBusiness )
-	if not ValidPanel( SA.Business.Bg ) then return end
-	if not SA.Business.List[ strBusiness ] then return end
-	if not SA.Business.List[ strBusiness ][ 'Employees' ] then SA.Business.List[ strBusiness ][ 'Employees' ] = {} end
+	if !ValidPanel( SA.Business.Bg ) then return end
+	if !SA.Business.List[ strBusiness ] then return end
+	if !SA.Business.List[ strBusiness ][ 'Employees' ] then SA.Business.List[ strBusiness ][ 'Employees' ] = {} end
 
 	SA.Business.Perms = SA.Business.DefaultPerms
 
@@ -239,7 +239,7 @@ function SA.Business:ManageEmployees( strBusiness )
 		if ESalary:GetValue() == "" || ESalary:GetValue() == "Entrez le salaire..." then return end
 		if Employee:GetValue() == "" || Employee:GetValue() == "Choissisez un employé..." then return end
 		
-		if not SA.Business.Perms || table.Count( SA.Business.Perms ) <= 0 then
+		if !SA.Business.Perms || table.Count( SA.Business.Perms ) <= 0 then
 			SA.Business.Perms = SA.Business.DefaultPerms
 		end
 

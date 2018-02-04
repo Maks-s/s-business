@@ -23,6 +23,7 @@ SA.Business.Languages[ 'fr' ] = {
 	[ 'SellerDeleted' ] = "Vendeur supprimé avec succès",
 	[ 'SellerChanged' ] = "Vendeur modifié avec succès",
 	[ 'InvalidSeller' ] = "Vendeur invalide",
+	[ 'InvalidModel' ] = "Model invalide",
 
 	[ 'MyBusiness' ] = "Mes Entreprises",
 	[ 'Manage' ] = "Gestion",

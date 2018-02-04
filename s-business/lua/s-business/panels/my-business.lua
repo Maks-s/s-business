@@ -1,5 +1,5 @@
 function SA.Business:MyBusiness()
-	if not ValidPanel( SA.Business.Bg ) then return end
+	if !ValidPanel( SA.Business.Bg ) then return end
 
 	SA.Business.MyBusinessList = vgui.Create( "DScrollPanel", SA.Business.Bg )
 	SA.Business.MyBusinessList:SetSize( SA.Business.Bg:GetWide(), SA.Business.Bg:GetTall() - 60 )

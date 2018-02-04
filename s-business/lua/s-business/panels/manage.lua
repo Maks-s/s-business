@@ -17,7 +17,7 @@ function SA.Business:ManageChoice( strBusiness )
 		}
 	}
 
-	if not ManageChoice then return end
+	if !ManageChoice then return end
 
 	local MList = vgui.Create( "DScrollPanel", SA.Business.Bg )
 	MList:SetSize( SA.Business.Bg:GetWide(), SA.Business.Bg:GetTall() + 5 )
@@ -43,7 +43,7 @@ function SA.Business:ManageChoice( strBusiness )
 	end
 
 	for k,v in SortedPairs( ManageChoice , false ) do
-		if SA.Business.List[ strBusiness ][ 'Owner' ] != LocalPlayer():SteamID() && SA.Business.List[ strBusiness ]['Employees'][ LocalPlayer():SteamID() ][ 'Perms' ][ v['Perm' ] ] != 1 then continue end
+		if SA.Business.List[ strBusiness ][ 'Owner' ] ~= LocalPlayer():SteamID() && SA.Business.List[ strBusiness ]['Employees'][ LocalPlayer():SteamID() ][ 'Perms' ][ v['Perm' ] ] ~= 1 then continue end
 		local Background = vgui.Create( "DPanel", MList )
 		Background:SetSize( MList:GetWide(), 35 )
 		Background:Dock( TOP )
@@ -67,7 +67,7 @@ function SA.Business:ManageChoice( strBusiness )
 end
 
 function SA.Business:ManageBusiness()
-	if not ValidPanel( SA.Business.Bg ) then return end
+	if !ValidPanel( SA.Business.Bg ) then return end
 
 	local MyBusiness = {}
 

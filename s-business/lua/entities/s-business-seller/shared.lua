@@ -3,9 +3,8 @@ ENT.Type = "ai"
 ENT.PrintName = "NPC Seller"
 ENT.Category 		= "SlownLS | S-Business"
 ENT.Author			= "SlownLS"
-ENT.Instructions = "Appuyer sur E (Touche 'USE')" 
-ENT.Spawnable = false 
-ENT.AdminSpawnable = true 
+ENT.Instructions = "Appuyez sur E (Touche 'USE')" 
+ENT.Spawnable = false
 
 function ENT:SetupDataTables() 
 	self:NetworkVar( "String", 0, "SellerBusiness" )

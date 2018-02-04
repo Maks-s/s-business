@@ -1,15 +1,15 @@
 SA.Business:AddEvent( "CreateBusiness", function( pPlayer, tblInfos )
-	if not tblInfos[ 'Name' ] || tblInfos[ 'Name' ] == "Entrez un nom valide..." then
+	if !tblInfos[ 'Name' ] || tblInfos[ 'Name' ] == "Entrez un nom valide..." then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "InvalidName" ), SA.Business.Red, 5 )
 	end
 	
-	if not SA.Business.List then SA.Business.List = {} end
+	if !SA.Business.List then SA.Business.List = {} end
 
 	if SA.Business.List[ tblInfos[ 'Name' ] ] then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "NameAlreadyTaken" ), SA.Business.Red, 5 )
 	end 
 
-	if not pPlayer:canAfford( SA.Business.BPrice ) then
+	if !pPlayer:canAfford( SA.Business.BPrice ) then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "NoMoney" ), SA.Business.Red, 5 )
 	end
 
@@ -36,11 +36,11 @@ SA.Business:AddEvent( "CreateBusiness", function( pPlayer, tblInfos )
 end)
 
 SA.Business:AddEvent( "DeleteBusiness", function( pPlayer, tblInfos )
-	if not tblInfos[ 'Name' ] then return end
+	if !tblInfos[ 'Name' ] then return end
 
-	if not SA.Business.List[ tblInfos[ 'Name' ] ] then return end
+	if !SA.Business.List[ tblInfos[ 'Name' ] ] then return end
 
-	if SA.Business.List[ tblInfos[ 'Name' ] ][ 'Owner' ] != pPlayer:SteamID() then
+	if SA.Business.List[ tblInfos[ 'Name' ] ][ 'Owner' ] ~= pPlayer:SteamID() then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "BusinessNotOwner" ), SA.Business.Red, 5 )
 	end 
 

@@ -81,7 +81,7 @@ function SA.Business:WithdrawTreasury( strBusiness )
 end
 
 function SA.Business:Treasury( strBusiness )
-	if not ValidPanel( SA.Business.Bg ) then return end
+	if !ValidPanel( SA.Business.Bg ) then return end
 
 	SA.Business.BaseTreasury = vgui.Create( "DPanel", SA.Business.Bg )
 	SA.Business.BaseTreasury:SetSize( 350, 100 )
@@ -137,7 +137,7 @@ function SA.Business:Treasury( strBusiness )
 		draw.RoundedBox( 0, 0, 0, w, h, Color( 27, 37, 47 )  )
 	end
 
-	if not SA.Business.List[ strBusiness ][ 'LogsTreasury' ] then return end
+	if !SA.Business.List[ strBusiness ][ 'LogsTreasury' ] then return end
 
 	local LogsList = vgui.Create( "DScrollPanel", SA.Business.Bg )
 	LogsList:SetSize( SA.Business.Bg:GetWide() - 15, SA.Business.Bg:GetTall() - 215 )
@@ -168,7 +168,7 @@ function SA.Business:Treasury( strBusiness )
 end
 
 function SA.Business:TreasuryChoice()
-	if not ValidPanel( SA.Business.Bg ) then return end
+	if !ValidPanel( SA.Business.Bg ) then return end
 
 	if table.Count( SA.Business.List ) > 0 then
 		local BusinessList = vgui.Create( "DScrollPanel", SA.Business.Bg )

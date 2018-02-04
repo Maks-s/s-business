@@ -1,7 +1,7 @@
 SA.Business.Events = {}
 
 function SA.Business:AddEvent( typeID, func )
-	if not SA.Business.Events then SA.Business.Events = {} end
+	if !SA.Business.Events then SA.Business.Events = {} end
 	
 	SA.Business.Events[ typeID ] = func
 end
@@ -17,39 +17,39 @@ net.Receive( "S:Business:Events", function()
 end)
 
 SA.Business:AddEvent( "UpdateBusiness", function( tblInfos )
-	if not ValidPanel( SA.Business.Bg ) then return end
-	if not ValidPanel( SA.Business.MyBusinessList ) then return end
+	if !ValidPanel( SA.Business.Bg ) then return end
+	if !ValidPanel( SA.Business.MyBusinessList ) then return end
 
 	SA.Business.Bg:Clear()
 	SA.Business:MyBusiness()
 end)
 
 SA.Business:AddEvent( "UpdateEmployees", function( tblInfos )
-	if not ValidPanel( SA.Business.Bg ) then return end
-	if not ValidPanel( SA.Business.EmployeesList ) then return end
+	if !ValidPanel( SA.Business.Bg ) then return end
+	if !ValidPanel( SA.Business.EmployeesList ) then return end
 
 	SA.Business.Bg:Clear()
 	SA.Business:ManageEmployees( tblInfos[ 'Business' ] )
 end)
 
 SA.Business:AddEvent( "UpdateSellers", function( tblInfos )
-	if not ValidPanel( SA.Business.Bg ) then return end
-	if not ValidPanel( SA.Business.SellersList ) then return end
+	if !ValidPanel( SA.Business.Bg ) then return end
+	if !ValidPanel( SA.Business.SellersList ) then return end
 
 	SA.Business.Bg:Clear()
 	SA.Business:ManageSellers( tblInfos[ 'Business' ] )
 end)
 
 SA.Business:AddEvent( "UpdateTreasury", function( tblInfos )
-	if not ValidPanel( SA.Business.Bg ) then return end
-	if not ValidPanel( SA.Business.BaseTreasury ) then return end
+	if !ValidPanel( SA.Business.Bg ) then return end
+	if !ValidPanel( SA.Business.BaseTreasury ) then return end
 
 	SA.Business.Bg:Clear()
 	SA.Business:Treasury( tblInfos[ 'Business' ] )
 end)
 
 SA.Business:AddEvent( "SendBusiness", function( tblInfos )
-	if not SA.Business.List then SA.Business.List = {} end
+	if !SA.Business.List then SA.Business.List = {} end
 
 	if tblInfos[ 'All' ] == true then
 		SA.Business.List = tblInfos[ 'MyBusiness' ]

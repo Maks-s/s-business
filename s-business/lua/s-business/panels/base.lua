@@ -83,12 +83,12 @@ net.Receive( "S:Business:OpenMenu", function()
 
 	local CloseBtn = vgui.Create( "DButton", SA.Business.Base )
 	CloseBtn:SetSize( 32, 32 )
-	CloseBtn:SetPos( SA.Business.Base:GetWide() - CloseBtn:GetWide() - 5, 4 )
+	CloseBtn:SetPos( 863, 4 )
 	CloseBtn:SetText( '' )
 	CloseBtn.Paint = function( self, w, h )
 		draw.RoundedBox( 0, 0, 0, w, h, SA.Business.Red )
 
-		draw.SimpleText( "X", "Trebuchet18", w / 2, h / 2, color_white, 1, 1 )
+		draw.SimpleText( "X", "Trebuchet18", 16, 16, color_white, 1, 1 )
 	end
 	CloseBtn.DoClick = function()
 		SA.Business.Base:Remove()
@@ -100,47 +100,44 @@ net.Receive( "S:Business:OpenMenu", function()
 	Avatar:SetPlayer( LocalPlayer(), 64 )
 
 	local SideBarList = vgui.Create( "DScrollPanel", SA.Business.Base )
-	SideBarList:SetSize( 220, SA.Business.Base:GetTall() - 40 )
+	SideBarList:SetSize( 220, 460 )
 	SideBarList:SetPos( 0, 40 )
 
-	for k,v in ipairs( SideBarBtns ) do
+	for i=1, #SideBarBtns do
 		local SDButtion = vgui.Create( "DButton", SideBarList )
-		SDButtion:SetSize( SideBarList:GetWide(), 41 )
+		SDButtion:SetSize( 220, 41 )
 		SDButtion:Dock( TOP )
-		SDButtion:DockMargin( 0, 0, 0, 0 )
-		SDButtion:SetPos( 0, 0 )
 		SDButtion:SetText( "" )
-		SDButtion.lerp = 0
-		SDButtion.Paint = function( self, w, h )
-			if self:IsHovered() || SDButtonsHoverd[ k ] == "Yes" then
+		function SDButtion:Paint( w, h )
+			if self:IsHovered() || SDButtonsHoverd[ i ] == "Yes" then
 				draw.RoundedBox( 0, 0, 0, w, h, SA.Business.Red )
 			end
 
 			surface.SetDrawColor( color_white )
-			surface.SetMaterial( v[ 'Icon' ] )
-			surface.DrawTexturedRect( 5, h / 2 - ( 32 / 2 ), 32, 32 )
+			surface.SetMaterial( SideBarBtns[ i ][ 'Icon' ] )
+			surface.DrawTexturedRect( 5, 4.5, 32, 32 )
 
-			draw.SimpleText( v[ 'Name' ], "S:Business:Roboto:18", 42, h / 2, color_white, 0, 1 )
+			draw.SimpleText( SideBarBtns[ i ][ 'Name' ], "S:Business:Roboto:18", 42, h / 2, color_white, 0, 1 )
 		end
 		SDButtion.DoClick = function()
 			SA.Business.Bg:Clear()
 
-			for bk,_ in pairs( SDButtonsHoverd ) do
-				SDButtonsHoverd[ bk ] = "No"
+			for j=1, #SDButtonsHoverd do
+				SDButtonsHoverd[ j ] = "No"
 			end
 
-			SDButtonsHoverd[ k ] = "Yes"
+			SDButtonsHoverd[ i ] = "Yes"
 
-			v[ 'Action' ]()
+			SideBarBtns[ i ][ 'Action' ]()
 		end			
 
-		SDButtonsHoverd[ k ] = "No"
+		SDButtonsHoverd[ i ] = "No"
 	end	
 
 	SA.Business.Bg = vgui.Create( "DPanel", SA.Business.Base )
-	SA.Business.Bg:SetSize( SA.Business.Base:GetWide() - 230, SA.Business.Base:GetTall() - 50 )
+	SA.Business.Bg:SetSize( 670, 450 )
 	SA.Business.Bg:SetPos( 225, 45 )
-	SA.Business.Bg.Paint = function() end
+	SA.Business.Bg.Paint = nil
 
 	SDButtonsHoverd[ 1 ] = "Yes"
 	SideBarBtns[ 1 ][ 'Action' ]()

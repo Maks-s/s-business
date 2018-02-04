@@ -2,63 +2,52 @@ SA = SA or {}
 SA.Business = {}
 SA.Business.Languages = {}
 
-if ( SERVER ) then
-	// Load Shared Files
-	for k, v in pairs( file.Find( "s-business/*.lua", "LUA" ) ) do
+local function addFile(path, doInclude)
+	local files, folders = file.Find(path .. "*", "LUA")
+	for _,v in pairs(files) do
+		if doInclude then
+			include(path .. v)
+		else
+			AddCSLuaFile(path .. v)
+		end
+	end
+	
+	for _,v in pairs(folders) do
+		addFile(path .. v .. "/", doInclude)
+	end
+end
+
+if SERVER then
+	-- Load Shared Files
+	for _, v in pairs( file.Find( "s-business/*.lua", "LUA" ) ) do
 		AddCSLuaFile( "s-business/" .. v )
 		include( "s-business/" .. v )
 	end		
 
-	// Load Languages Files
-	for k, v in pairs( file.Find( "s-business/languages/*.lua", "LUA" ) ) do
+	-- Load Languages Files
+	for _, v in pairs( file.Find( "s-business/languages/*.lua", "LUA" ) ) do
 		AddCSLuaFile( "s-business/languages/" .. v )
 		include( "s-business/languages/" .. v )
 	end	
 
-	// Load Server Files
-	for k, v in pairs( file.Find( "s-business/server/*.lua", "LUA" ) ) do
-		include( "s-business/server/" .. v )
-	end		
+	-- Load Server Files
+	addFile("s-business/server/", true)
 
-	for k, v in pairs( file.Find( "s-business/server/manage/*.lua", "LUA" ) ) do
-		include( "s-business/server/manage/" .. v )
-	end	
-
-	// Load Client Files
-	for k, v in pairs( file.Find( "s-business/client/*.lua", "LUA" ) ) do
-		AddCSLuaFile( "s-business/client/" .. v )
-	end	
-
-	for k, v in pairs( file.Find( "s-business/panels/*.lua", "LUA" ) ) do
-		AddCSLuaFile( "s-business/panels/" .. v )
-	end	
-
-	for k, v in pairs( file.Find( "s-business/panels/manage/*.lua", "LUA" ) ) do
-		AddCSLuaFile( "s-business/panels/manage/" .. v )
-	end
+	-- Load Client Files
+	addFile("s-business/client/", false)
+	addFile("s-business/panels/", false)
+	addFile("s-business/manage/", false)
+	return
 end
 
-if ( CLIENT ) then
-	// Load Shared Files
-	for k, v in pairs( file.Find( "s-business/*.lua", "LUA" ) ) do
-		include( "s-business/" .. v )
-	end	
+-- Load Shared Files
+for _, v in pairs( file.Find( "s-business/*.lua", "LUA" ) ) do
+	include( "s-business/" .. v )
+end	
 
-	// Load Languages Files
-	for k, v in pairs( file.Find( "s-business/languages/*.lua", "LUA" ) ) do
-		include( "s-business/languages/" .. v )
-	end	
+-- Load Languages Files
+addFile("s-business/languages/", true)
 
-	// Load Client Files
-	for k, v in pairs( file.Find( "s-business/client/*.lua", "LUA" ) ) do
-		include( "s-business/client/" .. v )
-	end	
-
-	for k, v in pairs( file.Find( "s-business/panels/*.lua", "LUA" ) ) do
-		include( "s-business/panels/" .. v )
-	end
-
-	for k, v in pairs( file.Find( "s-business/panels/manage/*.lua", "LUA" ) ) do
-		include( "s-business/panels/manage/" .. v )
-	end	
-end
+-- Load Client Files
+addFile("s-business/client/", true)
+addFile("s-business/panels/", true)

@@ -1,16 +1,16 @@
 SA.Business:AddEvent( "AddEmployee", function( pPlayer, tblInfos )
-	if not tblInfos[ 'Business' ] then return end
-	if not tblInfos[ 'Employee' ] then return end
-	if not tblInfos[ 'Perms' ] then return end
-	if not tblInfos[ 'Salary' ] then return end
+	if !tblInfos[ 'Business' ] then return end
+	if !tblInfos[ 'Employee' ] then return end
+	if !tblInfos[ 'Perms' ] then return end
+	if !tblInfos[ 'Salary' ] then return end
 
-	if not SA.Business.List[ tblInfos[ 'Business' ] ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ] then return end
 
-	if not SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Manage Employees" ) then
+	if !SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Manage Employees" ) then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "NoPermission" ), SA.Business.Red, 5 )
 	end
 	
-	if not IsValid( tblInfos[ 'Employee' ] ) then 
+	if !IsValid( tblInfos[ 'Employee' ] ) then 
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "InvalidEmployee" ), SA.Business.Red, 5 )
 	end
 
@@ -22,7 +22,7 @@ SA.Business:AddEvent( "AddEmployee", function( pPlayer, tblInfos )
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "InvalidSalary" ), SA.Business.Red, 5 )
 	end
 
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then
 		SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] = {}
 	end
 
@@ -48,19 +48,19 @@ SA.Business:AddEvent( "AddEmployee", function( pPlayer, tblInfos )
 end)
 
 SA.Business:AddEvent( "DeleteEmployee", function( pPlayer, tblInfos )
-	if not tblInfos[ 'Business' ] then return end
-	if not tblInfos[ 'Employee' ] then return end
+	if !tblInfos[ 'Business' ] then return end
+	if !tblInfos[ 'Employee' ] then return end
 
-	if not SA.Business.List[ tblInfos[ 'Business' ] ] then return end
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] = {} end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] = {} end
 
-	if not SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Manage Employees" ) then
+	if !SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Manage Employees" ) then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "NoPermission" ), SA.Business.Red, 5 )
 	end
 
 	if tblInfos[ 'Employee' ] == SA.Business.List[ tblInfos[ 'Business' ] ][ 'Owner' ] then return end
 	
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ][ tblInfos[ 'Employee' ] ] then 
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ][ tblInfos[ 'Employee' ] ] then 
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "InvalidEmployee" ), SA.Business.Red, 5 )
 	end
 
@@ -81,21 +81,21 @@ SA.Business:AddEvent( "DeleteEmployee", function( pPlayer, tblInfos )
 end)
 
 SA.Business:AddEvent( "EditEmployee", function( pPlayer, tblInfos )
-	if not tblInfos[ 'Business' ] then return end
-	if not tblInfos[ 'Employee' ] then return end
-	if not tblInfos[ 'Perms' ] then return end
-	if not tblInfos[ 'Salary' ] then return end
+	if !tblInfos[ 'Business' ] then return end
+	if !tblInfos[ 'Employee' ] then return end
+	if !tblInfos[ 'Perms' ] then return end
+	if !tblInfos[ 'Salary' ] then return end
 
-	if not SA.Business.List[ tblInfos[ 'Business' ] ] then return end
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] = {} end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ] then return end
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] then SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ] = {} end
 
-	if not SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Manage Employees" ) then
+	if !SA.Business:HasPermission( tblInfos[ 'Business' ], pPlayer, "Manage Employees" ) then
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "NoPermission" ), SA.Business.Red, 5 )
 	end
 
 	if tblInfos[ 'Employee' ] == SA.Business.List[ tblInfos[ 'Business' ] ][ 'Owner' ] then return end
 	
-	if not SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ][ tblInfos[ 'Employee' ] ] then 
+	if !SA.Business.List[ tblInfos[ 'Business' ] ][ 'Employees' ][ tblInfos[ 'Employee' ] ] then 
 		return SA.Business:AddNotify( pPlayer, SA.Business:GetLanguage( "InvalidEmployee" ), SA.Business.Red, 5 )
 	end
 

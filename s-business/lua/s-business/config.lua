@@ -1,26 +1,26 @@
-// Language of script
+-- Language of script
 SA.Business.Language = "fr"
 
-// Save Businees or no
+-- Save Businees or no
 SA.Business.Save = true
 
-// Command to open menu
+-- Command to open menu
 SA.Business.Command = "!b"
 
-// Price to create business
+-- Price to create business
 SA.Business.BPrice = 150
 
-// Time to receive Payday
+-- Time to receive Payday
 SA.Business.PayDay = 30 * 60
 
-// Max salary of employee
+-- Max salary of employee
 SA.Business.MaxSalary = 3500
 
 SA.Business.Red = Color( 231, 76, 60 )
 SA.Business.Green = Color( 30, 134, 74 )
 SA.Business.Orange = Color( 157, 122, 30 )
 
-// Contents of sellers
+-- Contents of sellers
 SA.Business.SellersContents = {
 	[ 'weapon_deagle2' ] = {
 		Name = "Deagle",
@@ -48,11 +48,11 @@ SA.Business.SellersContents = {
 	}
 }
 
-// Don't touch !!
+-- Don't touch !!
 function SA.Business:GetLanguage( strName )
-	if not SA.Business.Language then return "" end
-	if not SA.Business.Languages[ SA.Business.Language ] then return "Language invalid" end
-	if not SA.Business.Languages[ SA.Business.Language ][ strName ] then return "" end
+	if !SA.Business.Language then return "" end
+	if !SA.Business.Languages[ SA.Business.Language ] then return "Invalid language" end
+	if !SA.Business.Languages[ SA.Business.Language ][ strName ] then return "" end
 	
 	return SA.Business.Languages[ SA.Business.Language ][ strName ]
 end

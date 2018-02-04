@@ -1,26 +1,19 @@
-net.Receive( "S:Business:Notify", function()
-	local strMsg = net.ReadString()
-	local color = net.ReadColor()
-	local intTime = net.ReadInt( 32 )
-	local seller = net.ReadBool()
+function SA.Business:AddNotify( strMsg, color, intTime, seller )
+	if !SA.Business.NotifyList then return end
 
-	print( seller )
-
-	if not SA.Business.NotifyList then return end
-
-	local Base = ""
+	local Base
 
 	if seller then
-		if not ValidPanel( SA.Business.SellerBase ) then return end
+		if !ValidPanel( SA.Business.SellerBase ) then return end
 
 		Base = SA.Business.SellerBase
 	else
-		if not ValidPanel( SA.Business.Base ) then return end
+		if !ValidPanel( SA.Business.Base ) then return end
 
 		Base = SA.Business.Base
 	end
 
-	if not ValidPanel( Base ) then return end
+	if !ValidPanel( Base ) then return end
 	
 	local Notify = vgui.Create( "DFrame", Base )
 	Notify:SetSize( 220, 35 )
@@ -60,5 +53,13 @@ net.Receive( "S:Business:Notify", function()
 		end
 	end)
 
-	table.insert( SA.Business.NotifyList, Notify )
+	SA.Business.NotifyList[ #SA.Business.NotifyList + 1 ] = Notify
+end
+
+net.Receive( "S:Business:Notify", function()
+	local strMsg = net.ReadString()
+	local color = net.ReadColor()
+	local intTime = net.ReadUInt( 16 )
+	local seller = net.ReadBool()
+	SA.Business:AddNotify( strMsg, color, intTime, seller )
 end)

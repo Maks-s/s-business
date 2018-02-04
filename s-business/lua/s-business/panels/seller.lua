@@ -3,11 +3,11 @@ function SA.Business:SellerCart( ent )
 		SA.Business.SellerSideBar:Clear()
 	end
 
-	if not SA.Business.List[ ent:GetSellerBusiness() ] then return end 
-	if not SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ] then return end 
-	if not SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ][ ent:GetSellerName() ] then return end 
+	if !SA.Business.List[ ent:GetSellerBusiness() ] then return end 
+	if !SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ] then return end 
+	if !SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ][ ent:GetSellerName() ] then return end 
 
-	if not ent.Cart then ent.Cart = {} end
+	if !ent.Cart then ent.Cart = {} end
 
     local ContentsList = vgui.Create( "DScrollPanel", SA.Business.SellerSideBar )
 	ContentsList:SetSize( SA.Business.SellerSideBar:GetTall(), SA.Business.SellerSideBar:GetTall() )
@@ -109,11 +109,11 @@ net.Receive( "S:Business:OpenSellerMenu", function()
 		net.SendToServer()
 	end
 
-	if not SA.Business.List[ ent:GetSellerBusiness() ] then return end 
-	if not SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ] then return end 
-	if not SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ][ ent:GetSellerName() ] then return end 
+	if !SA.Business.List[ ent:GetSellerBusiness() ] then return end 
+	if !SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ] then return end 
+	if !SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ][ ent:GetSellerName() ] then return end 
 
-	if not SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ][ ent:GetSellerName() ][ 'Contents' ] then
+	if !SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ][ ent:GetSellerName() ][ 'Contents' ] then
 		SA.Business.List[ ent:GetSellerBusiness() ][ 'Sellers' ][ ent:GetSellerName() ][ 'Contents' ] = {}
 	end
 
@@ -157,7 +157,7 @@ net.Receive( "S:Business:OpenSellerMenu", function()
 		AddToCart:SetText( SA.Business:GetLanguage( "Add" ) )
 		AddToCart:BackgroundColor( SA.Business.Red )
 		AddToCart.DoClick = function()
-			if not ent.Cart then ent.Cart = {} end
+			if !ent.Cart then ent.Cart = {} end
 
 			local Amount = 0
 

@@ -17,24 +17,18 @@ function ENT:Initialize()
 end
 
 function ENT:AddContent( strItem, intAmount )
-	if not self.tblContents then self.tblContents = {} end
+	if !self.tblContents then self.tblContents = {} end
 
-	if self.tblContents[ strItem ] then
-		self.tblContents[ strItem ] = self.tblContents[ strItem ] + intAmount
-	else
-		self.tblContents[ strItem ] = intAmount
-	end
+	self.tblContents[ strItem ] = ( self.tblContents[ strItem ] or 0 ) + intAmount
 end
 
-function ENT:AcceptInput( Name, Activator, Caller )
-	if Name == "Use" && IsValid( Caller ) && Caller:IsPlayer() then
-		if self:GetCrateOwner() != Caller then return end
-		
-		if not self.tblContents then self.tblContents = {} end
+function ENT:Use( _, ply )
+	if !( IsValid( ply ) && ply:IsPlayer() ) then return end
 
-		net.Start( "S:Business:OpenMenuCrate" )
-		net.WriteEntity( self )
-		net.WriteTable( self.tblContents )
-		net.Send( Caller )
-	end
+	if self:GetCrateOwner() ~= ply then return end
+		
+	net.Start( "S:Business:OpenMenuCrate" )
+	net.WriteEntity( self )
+	net.WriteTable( self.tblContents or {} )
+	net.Send( ply )
 end
