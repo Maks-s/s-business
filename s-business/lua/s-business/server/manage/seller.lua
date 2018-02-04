@@ -18,7 +18,7 @@ SA.Business:AddEvent( "AddSeller", function( pPlayer, tblInfos )
 
 	local Seller = ents.Create( "s-business-seller" )
 	Seller:SetModel( tblInfos[ 'SellerModel' ] )
-	Seller:SetPos( Vector( vecPos[ 1 ], vecPos[ 2 ], vecPos[ 3 ] ) )
+	Seller:SetPos( Vector( vecPos[ 1 ], vecPos[ 2 ], vecPos[ 3 ] ) + pPlayer:GetForward() * 35 )
 	Seller:SetAngles( Angle( angPos[ 1 ], angPos[ 2 ], angPos[ 3 ] ) )
 	Seller:Spawn()
 	Seller:Activate()
